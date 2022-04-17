@@ -1,0 +1,11 @@
+.navbar{
+  height: 8vh
+}
+
+.nav-logo {
+  flex: 1 1 auto;
+}
+
+.nav-item {
+  padding: 1rem;
+}
