@@ -1,7 +1,11 @@
 <mat-toolbar class="navbar">
   <span class="nav-logo"><a href="#">Furniture Store</a></span>
-  <span class="nav-item"><a href="#" routerLink="./home" routerLinkActive="active">Home</a></span>
-  <span class="nav-item"><a href="#" routerLink="./products" routerLinkActive="active">Katalog</a></span>
-  <span class="nav-item"><a href="#" routerLink="./about" routerLinkActive="active">O nas</a></span>
-  <span class="nav-item"><a href="#" routerLink="./contact" routerLinkActive="active">Kontakt</a></span>
+  <span class="nav-item" *ngIf="!(isLogged)"><a href="#" routerLink="./home" routerLinkActive="active">Home</a></span>
+  <span class="nav-item" *ngIf="!(isLogged)"><a href="#" routerLink="./products" routerLinkActive="active">Katalog</a></span>
+  <span class="nav-item" *ngIf="!(isLogged)"><a href="#" routerLink="./about" routerLinkActive="active">O nas</a></span>
+  <span class="nav-item" *ngIf="!(isLogged)"><a href="#" routerLink="./contact" routerLinkActive="active">Kontakt</a></span>
+  <span class="nav-item" *ngIf="(isLogged)"><a href="#" routerLink="./panelAdmin" routerLinkActive="active">Panel administracyjny</a></span>
+  <span class="nav-item" *ngIf="(isLogged)"><a href="#" routerLink="./contentConfiguration" routerLinkActive="active">Zarządzanie treścią</a></span>
+  <span class="nav-item" *ngIf="(isLogged)"><a href="#" routerLink="./accountSettings" routerLinkActive="active">Ustawienia użytkownika</a></span>
+  <span class="nav-item" *ngIf="(isLogged)"><a href="#" routerLink="./logout" routerLinkActive="active">Wyloguj</a></span>
 </mat-toolbar>

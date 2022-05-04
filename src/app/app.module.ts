@@ -12,6 +12,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { SectionComponent } from './components/section/section.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AdminSettingsComponent } from './components/admin-settings/admin-settings.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginFormComponent } from './components/login/login-form/login-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './components/login/login-page/login-page.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +31,11 @@ import { FooterComponent } from './components/footer/footer.component';
     HomepageComponent,
     MainSectionComponent,
     SectionComponent,
-    FooterComponent
+    FooterComponent,
+    AdminSettingsComponent,
+    LoginFormComponent,
+    LoginPageComponent,
+    AdminPanelComponent
     ],
   imports: [
     BrowserModule,
@@ -28,7 +43,14 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

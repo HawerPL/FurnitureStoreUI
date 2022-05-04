@@ -1,0 +1,42 @@
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="login-card">
+    <mat-card-header class="login-header">
+      <mat-card-title>Formularz logowania</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nazwa użytkownika</mat-label>
+            <input matInput placeholder="Nazwa użytkownika" formControlName="username">
+            <mat-error *ngIf="loginForm.controls['username'].hasError">
+              Nazwa użytkownika jest wymagana
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Hasło</mat-label>
+            <input type="password" matInput placeholder="Hasło" formControlName="password">
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+              Hasło jest wymagane
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!--To dodać jak będzie obsłużone logowanie
+            <mat-error *ngIf="userExists == false">
+            Podano nieprawidłowe dane logowania
+          </mat-error> -->
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Zaloguj się</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

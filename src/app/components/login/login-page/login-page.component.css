@@ -1,0 +1,14 @@
+.login-background{
+  height: 92vh;
+  display: flex;
+}
+.login-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3.4rem;
+  font-variant: small-caps;
+}
