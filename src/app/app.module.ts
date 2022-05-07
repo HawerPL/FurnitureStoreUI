@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     AdminSettingsComponent,
     LoginFormComponent,
     LoginPageComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AccountSettingsComponent
     ],
   imports: [
     BrowserModule,

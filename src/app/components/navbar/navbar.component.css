@@ -1,5 +1,6 @@
 .navbar{
-  height: 8vh
+  background-color: rgb(54, 54, 54);
+  height: 8vh;
 }
 
 .nav-logo {
@@ -8,4 +9,36 @@
 
 .nav-item {
   padding: 1rem;
+}
+
+.nav-link, .nav-logout:any-link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  border-color: rgb(215, 215, 215);
+  transition: border, color 300ms;
+}
+
+.nav-link:hover {
+  color: rgb(215, 215, 215);
+  border-bottom: solid 1px rgb(215, 215, 215);
+  transition: border, color 0ms;
+}
+
+.nav-link:active{
+  color: rgb(185, 185, 185);
+  border-bottom: solid 1px rgb(215, 215, 215);
+}
+
+.nav-logout{
+  display: flex;
+  font-size: 2.6rem;
+}
+
+.nav-logout:hover{
+  color: rgb(215, 215, 215);
+  transition: color 0ms;
+}
+
+.nav-logout:active{
+  color: rgb(185, 185, 185);
 }
