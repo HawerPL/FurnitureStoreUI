@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AccountSettingsComponent } from './components/account-settings/account-
     ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatMenuModule,
