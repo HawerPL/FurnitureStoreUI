@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +11,7 @@ export class LoginFormComponent {
 
   loginForm = this.fb.group({
     username: [null, Validators.required],
-    password: [null, Validators.required]
+    password: [null, Validators.required],
   });
 
   hasUnitNumber = false;

@@ -7,7 +7,7 @@
   <span class="nav-item" *ngIf="(isLogged)"><a href="#" class="nav-link" routerLink="./adminPanel" routerLinkActive="active">Panel administracyjny</a></span>
   <span class="nav-item" *ngIf="(isLogged)"><a href="#" class="nav-link" routerLink="./contentConfiguration" routerLinkActive="active">Zarządzanie treścią</a></span>
   <span class="nav-item" *ngIf="(isLogged)"><a href="#" class="nav-link" routerLink="./accountSettings" routerLinkActive="active">Ustawienia użytkownika</a></span>
-  <span class="nav-item" *ngIf="(isLogged)"><a href="#" class="nav-logout" routerLink="./logout" routerLinkActive="active">
+  <span class="nav-item" *ngIf="(isLogged)"><a href="#" class="nav-logout" routerLink="./logout" routerLinkActive="active" (click)="logout()">
     <mat-icon inline aria-hidden="false" aria-label="Logout">logout</mat-icon>
   </a></span>
 </mat-toolbar>

@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ export class NavbarComponent implements DoCheck {
 
   isLogged: boolean = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngDoCheck(): void {
     if(sessionStorage.getItem("isLogged")){
@@ -19,6 +20,11 @@ export class NavbarComponent implements DoCheck {
       this.isLogged = false;
     }
 
+  }
+
+  logout(): void {
+    sessionStorage.removeItem("isLogged");
+    this.router.navigate(['home']);
   }
 
 }

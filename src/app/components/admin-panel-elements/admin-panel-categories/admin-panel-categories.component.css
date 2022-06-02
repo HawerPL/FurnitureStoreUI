@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.mat-icon{
+  padding: 1rem;
+}
+
+:host ::ng-deep div.mat-expansion-panel-body{
+  padding: 0px !important;
+}
+
+.mat-column-id, .column-add-id{
+  width: 3rem;
+  max-width: 5rem;
+  text-align: left;
+}
+
+.mat-header-cell{
+  text-align: left;
+}
+
+.mat-action-row{
+  justify-content: left;
+}

@@ -25,6 +25,11 @@ import { LoginPageComponent } from './components/login/login-page/login-page.com
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminPanelCategoriesComponent } from './components/admin-panel-elements/admin-panel-categories/admin-panel-categories.component';
+import { AdminPanelProductsComponent } from './components/admin-panel-elements/admin-panel-products/admin-panel-products.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginFormComponent,
     LoginPageComponent,
     AdminPanelComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    AdminPanelCategoriesComponent,
+    AdminPanelProductsComponent
     ],
   imports: [
     BrowserModule,
@@ -54,7 +61,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,41 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Kategorie
+      </mat-panel-title>
+      <mat-panel-description>
+        Dodaj, edytuj lub usuń kategorie
+      </mat-panel-description>
+      <mat-icon>category</mat-icon>
+    </mat-expansion-panel-header>
+
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" aria-label="Select page of category elements">
+    </mat-paginator>
+
+    <mat-action-row>
+      <form [formGroup]="categoryForm" class="category-form">
+        <mat-label class="column-add-id"> ID </mat-label>
+        <mat-form-field>
+          <mat-label >Nazwa kategorii</mat-label>
+          <input matInput placeholder="Nazwa kategorii" formControlName="name">
+        </mat-form-field>
+      </form>
+    </mat-action-row>
+
+
+  </mat-expansion-panel>
+</mat-accordion>
