@@ -19,7 +19,7 @@ export class ProductService {
     return this.http.get<Array<Product>>(`${environment.api_url}/Product`);
   }
 
-  addCatgory(Product: Product): Observable<Product>{
+  addProduct(Product: Product): Observable<Product>{
     return this.http.post<Product>(`${environment.api_url}/Product`, Product);
   }
 

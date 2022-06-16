@@ -1,16 +1,12 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models/Product';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatPaginator} from '@angular/material/paginator';
-
-const ELEMENT_DATA: Product[] = [
-  {id: 1, name: 'Szafka', header: "Szafka", description: "", categories: []},
-  {id: 2, name: 'Stolik nocny', header: "Stolik nocny", description: "", categories: []},
-  {id: 3, name: 'Półka', header: "Półka", description: "Półka 30x30, idealna do powieszenia na ścianie", categories: []},
-  {id: 4, name: 'Stolik', header: "Stolik", description: "", categories: []}
-];
-
+import { ProductService } from 'src/app/services/httpClient/product.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Category } from 'src/app/models/Category';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel-products',
@@ -24,19 +20,84 @@ const ELEMENT_DATA: Product[] = [
     ]),
   ],
 })
-export class AdminPanelProductsComponent implements AfterViewInit {
+export class AdminPanelProductsComponent implements OnInit {
 
-  displayedColumns = ["id", "name", "header"];
+  displayedColumns = ["id", "name", "header", "actions"];
+  displayedFormColumns = ["name", "header", "description", "other"];
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  dataSource = new MatTableDataSource<Product>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Product>();
   expandedElement: Product | null | undefined;
+
+  productName: string = "";
+  productDescription: string = "";
+  productHeader: string = "";
+  productCategories: Array<Category> = [];
 
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  constructor() { }
-
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
+    this.getProducts();
     this.dataSource.paginator = this.paginator;
   }
+
+  constructor(private fb: FormBuilder, private http: ProductService, private router: Router) { }
+
+  productForm = this.fb.group({
+    name: [null, Validators.required],
+    header: [null, Validators.required],
+    description: [null, Validators.required]
+  })
+
+  getProducts(){
+    this.http.getProducts().subscribe(products => {
+      this.reloadData(products);
+    });
+  }
+
+  addProduct(){
+    let product: Product;
+    product = ({
+      name: this.productName,
+      description: this.productDescription,
+      header: this.productHeader,
+      categories: this.productCategories
+    })
+    this.http.addProduct(product).subscribe(
+      {
+      next: () => {
+        this.getProducts();
+        this.productForm.reset();
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    })
+  }
+
+  deleteProduct(id: number){
+    this.http.deleteProduct(id).subscribe(
+      {
+        next: () => {
+          this.getProducts();
+        },
+        error: (e) => console.error(e),
+      }
+    )
+  }
+
+  editProduct(id: number){
+    alert("Akcja nie zaimplemetowana")
+  }
+
+  viewProduct(id: number){
+    this.router.navigate(['adminPanel']);
+  }
+
+  reloadData(products: Array<Product>){
+    this.dataSource.data = products;
+    this.dataSource.paginator = this.paginator;
+  }
+
+
+
 
 }

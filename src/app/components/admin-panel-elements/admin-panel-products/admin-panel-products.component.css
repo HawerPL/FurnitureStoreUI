@@ -56,3 +56,8 @@ tr.product-row:not(.expanded-row):active {
   max-width: 5rem;
   text-align: left;
 }
+
+.mat-action-row{
+  justify-content: left;
+  display: block;
+}
