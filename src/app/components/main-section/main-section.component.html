@@ -4,3 +4,16 @@
     <span></span>
   </div>
 </div>
+
+<app-section *ngFor="let section of sections" [section]="section"></app-section>
+
+<!-- <div class="section" *ngFor="let section of sections">
+  <div [innerHTML]="section.name"></div>
+  <div [innerHTML]="section.description"></div>
+</div> -->
+
+
+<!-- <div class="section" *ngFor="let section of sections">
+  <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(section.name)"></div>
+  <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(section.description)"></div>
+</div> -->

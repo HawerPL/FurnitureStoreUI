@@ -1,0 +1,45 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Sekcje
+      </mat-panel-title>
+      <mat-panel-description>
+        Dodaj, edytuj lub usuń sekcje
+      </mat-panel-description>
+      <mat-icon>category</mat-icon>
+    </mat-expansion-panel-header>
+
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="order">
+        <th mat-header-cell *matHeaderCellDef> Kolejność </th>
+        <td mat-cell *matCellDef="let element"> {{element.order}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Akcje </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon class="clickable-icon" (click)="deleteSection(element.id)">delete</mat-icon>
+          <mat-icon class="clickable-icon" (click)="editSection(element.id)">edit</mat-icon>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" aria-label="Select page of category elements">
+    </mat-paginator>
+    <div>
+      <div>Edytujesz sekcję: {{this.model.section.name}}</div>
+      <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" [disabled]="isDisabled"></ckeditor>
+      <button mat-raised-button color="primary" (click)="save()">Zapisz zmiany</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

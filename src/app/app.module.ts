@@ -30,6 +30,9 @@ import { AdminPanelProductsComponent } from './components/admin-panel-elements/a
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AdminPanelSectionEditorComponent } from './components/admin-panel-elements/admin-panel-section-editor/admin-panel-section-editor.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AdminPanelComponent,
     AccountSettingsComponent,
     AdminPanelCategoriesComponent,
-    AdminPanelProductsComponent
+    AdminPanelProductsComponent,
+    AdminPanelSectionEditorComponent
     ],
   imports: [
     BrowserModule,
@@ -65,6 +69,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatExpansionModule,
     MatTableModule,
     MatPaginatorModule,
+    CKEditorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

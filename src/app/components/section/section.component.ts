@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Section } from 'src/app/models/Section';
 
 @Component({
   selector: 'app-section',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  section: Section;
+
+  description: SafeHtml = "";
+  name: SafeHtml = "";
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
+    this.description = this.sanitizer.bypassSecurityTrustHtml(this.section.description);
+    this.name = this.sanitizer.bypassSecurityTrustHtml(this.section.name);
   }
 
 }
