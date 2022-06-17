@@ -35,9 +35,9 @@
 
     <mat-action-row>
       <form [formGroup]="categoryForm" class="category-form">
-        <mat-label class="column-add-id"> ID </mat-label>
+        <!-- <mat-label class="column-add-id"> ID </mat-label> -->
         <mat-form-field>
-          <mat-label >Nazwa kategorii</mat-label>
+          <mat-label> Nazwa kategorii </mat-label>
           <input matInput placeholder="Nazwa kategorii" formControlName="name" [(ngModel)]="categoryName">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="addCategory()">Dodaj</button>

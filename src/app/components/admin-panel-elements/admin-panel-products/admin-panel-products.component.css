@@ -61,3 +61,11 @@ tr.product-row:not(.expanded-row):active {
   justify-content: left;
   display: block;
 }
+
+form .mat-header-row{
+  text-align: left;
+}
+
+form th.mat-header-row:first-of-type{
+  padding-left: 24px;
+}

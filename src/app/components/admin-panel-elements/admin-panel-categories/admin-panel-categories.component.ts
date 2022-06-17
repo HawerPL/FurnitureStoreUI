@@ -26,7 +26,6 @@ export class AdminPanelCategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-    this.dataSource.paginator = this.paginator;
   }
 
   categoryForm = this.fb.group({

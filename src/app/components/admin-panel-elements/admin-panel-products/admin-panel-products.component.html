@@ -81,13 +81,16 @@
             </td>
             <td class="mat-cell" >
               <mat-form-field>
-                <input matInput placeholder="Opis produktu" formControlName="description" [(ngModel)]="productDescription">
+                <textarea matInput placeholder="Opis produktu" formControlName="description" [(ngModel)]="productDescription"></textarea>
               </mat-form-field>
             </td>
             <td class="mat-cell" >
               <!-- <mat-form-field> -->
                 <button mat-raised-button color="primary" (click)="getProducts()">Wgraj zdjęcie</button>
               <!-- </mat-form-field> -->
+            </td>
+            <td>
+              <button mat-raised-button color="primary" (click)="addProduct()">Dodaj</button>
             </td>
           </tr>
         </table>
