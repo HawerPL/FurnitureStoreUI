@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/httpClient/product.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/Category';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/httpClient/category.service';
 
 @Component({
   selector: 'app-admin-panel-products',
@@ -22,8 +23,7 @@ import { Router } from '@angular/router';
 })
 export class AdminPanelProductsComponent implements OnInit {
 
-  displayedColumns = ["id", "name", "header", "actions"];
-  displayedFormColumns = ["name", "header", "description", "other"];
+  displayedColumns = ["id", "name", "header", "category", "actions"];
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource = new MatTableDataSource<Product>();
   expandedElement: Product | null | undefined;
@@ -33,25 +33,38 @@ export class AdminPanelProductsComponent implements OnInit {
   productHeader: string = "";
   productCategories: Array<Category> = [];
 
+  categoriesList: Array<Category> = [];
+
   @ViewChild('paginator') paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.getProducts();
+    this.getCategories();
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private fb: FormBuilder, private http: ProductService, private router: Router) { }
+  constructor(private fb: FormBuilder, private httpProduct: ProductService, private httpCategory: CategoryService, private router: Router) { }
 
   productForm = this.fb.group({
     name: [null, Validators.required],
     header: [null, Validators.required],
-    description: [null, Validators.required]
+    description: [null, Validators.required],
+    categories: [null]
   })
 
   getProducts(){
-    this.http.getProducts().subscribe(products => {
+    this.httpProduct.getProducts().subscribe(products => {
       this.reloadData(products);
     });
+  }
+
+  getCategories(){
+    this.httpCategory.getCategories().subscribe({
+      next: categories => {
+        this.categoriesList = categories;
+      },
+      error: (e) => console.error(e)
+    })
   }
 
   addProduct(){
@@ -62,7 +75,7 @@ export class AdminPanelProductsComponent implements OnInit {
       header: this.productHeader,
       categories: this.productCategories
     })
-    this.http.addProduct(product).subscribe(
+    this.httpProduct.addProduct(product).subscribe(
       {
       next: () => {
         this.getProducts();
@@ -74,7 +87,7 @@ export class AdminPanelProductsComponent implements OnInit {
   }
 
   deleteProduct(id: number){
-    this.http.deleteProduct(id).subscribe(
+    this.httpProduct.deleteProduct(id).subscribe(
       {
         next: () => {
           this.getProducts();
@@ -89,7 +102,7 @@ export class AdminPanelProductsComponent implements OnInit {
   }
 
   viewProduct(id: number){
-    this.router.navigate(['adminPanel']);
+    this.router.navigate(['product', id]);
   }
 
   reloadData(products: Array<Product>){

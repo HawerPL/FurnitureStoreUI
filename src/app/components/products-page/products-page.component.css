@@ -1,0 +1,22 @@
+.category-chip-list{
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.product-cards{
+  display: flex;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  justify-content: space-around;
+}
+
+.product-card {
+  max-width: 400px;
+}
+
+.product-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

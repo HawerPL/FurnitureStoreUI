@@ -1,0 +1,25 @@
+<div class="category-chip-list">
+  <mat-chip-list aria-label="Category selection" multiple>
+    <mat-chip *ngFor="let category of categories" (click)="select(chip, category)" #chip="matChip">
+      {{category.name}}
+    </mat-chip>
+  </mat-chip-list>
+</div>
+<div class="product-cards">
+  <mat-card class="product-card" *ngFor="let product of visibleProducts">
+    <mat-card-header>
+      <div mat-card-avatar class="product-header-image"></div>
+      <mat-card-title>{{product.header}}</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        {{product.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="viewProduct(product.id)">Zobacz</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

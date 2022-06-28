@@ -5,6 +5,7 @@ import { Section } from 'src/app/models/Section';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SectionService } from 'src/app/services/httpClient/section.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-panel-section-editor',
@@ -23,6 +24,9 @@ export class AdminPanelSectionEditorComponent implements OnInit {
   defaultSection: Section = {id: 0, name: "", description: "", order: -1};
   sections: Array<Section>;
 
+  sectionName: string;
+  sectionOrder: number;
+
   model = {
     editorData: "",
     section: this.defaultSection,
@@ -30,7 +34,16 @@ export class AdminPanelSectionEditorComponent implements OnInit {
 
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  constructor(private http: SectionService) { }
+  constructor(private http: SectionService, private fb: FormBuilder) { }
+
+  sectionForm = this.fb.group({
+    name: [null, Validators.required],
+    order: [null, Validators.required]
+  })
+
+  sectionEditForm = this.fb.group({
+    newOrder: [null, Validators.required]
+  })
 
   ngOnInit(): void {
     this.getSections();
@@ -52,19 +65,19 @@ export class AdminPanelSectionEditorComponent implements OnInit {
 
   addSection(){
     let section: Section;
-    // section = ({
-    //   name: this.sectionName,
-    //   description: this.sectionDescription
-    // });
-    // this.http.addCategory(section).subscribe(
-    //   {
-    //   next: () => {
-    //     this.getCategories();
-    //     //this.categoryForm.reset();
-    //   },
-    //   error: (e) => console.error(e),
-    //   complete: () => console.info('complete')
-    //   })
+    section = ({
+      name: this.sectionName,
+      order: this.sectionOrder,
+      description: ""
+    });
+    this.http.addSection(section).subscribe(
+      {
+      next: () => {
+        this.getSections();
+        this.sectionForm.reset();
+      },
+      error: (e) => console.error(e),
+      })
   }
 
   deleteSection(id: number){
@@ -91,12 +104,10 @@ export class AdminPanelSectionEditorComponent implements OnInit {
       description: this.model.editorData,
       order: this.model.section.order
      });
-    console.log(section);
     this.http.updateSection(section).subscribe(
       {
         next: () => {
           this.getSections();
-          //this.sectionForm.reset();
         },
         error: (e) => console.error(e),
         complete: () => console.info('complete')

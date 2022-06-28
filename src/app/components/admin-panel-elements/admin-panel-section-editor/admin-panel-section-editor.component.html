@@ -36,10 +36,48 @@
 
     <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" aria-label="Select page of category elements">
     </mat-paginator>
-    <div>
-      <div>Edytujesz sekcję: {{this.model.section.name}}</div>
-      <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" [disabled]="isDisabled"></ckeditor>
-      <button mat-raised-button color="primary" (click)="save()">Zapisz zmiany</button>
+    <div class="section-editor-block">
+      <div class="section-editor-info">
+        <span class="bold">Edytujesz sekcję: </span>
+        {{this.model.section.name}}
+      </div>
+
+      <div class="section-editor-order">
+        <form [formGroup]="sectionEditForm" class="section-form">
+          <mat-form-field>
+            <input matInput type="number" placeholder="Kolejność sekcji" formControlName="newOrder" [(ngModel)]="model.section.order">
+           </mat-form-field>
+        </form>
+      </div>
+      <ckeditor class="section-editor" [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" [disabled]="isDisabled"></ckeditor>
+      <div class="section-editor-save">
+        <button mat-raised-button color="primary" (click)="save()">Zapisz zmiany</button>
+      </div>
     </div>
+    <mat-action-row>
+      <form [formGroup]="sectionForm" class="section-form">
+        <table class="mat-table">
+          <tr>
+            <th class="mat-header-row" > Nazwa </th>
+            <th class="mat-header-row" > Kolejność </th>
+          </tr>
+          <tr >
+            <td class="mat-cell" >
+              <mat-form-field>
+                <input matInput placeholder="Nazwa sekcji" formControlName="name" [(ngModel)]="sectionName" class="expand-input">
+              </mat-form-field>
+            </td>
+            <td class="mat-cell" >
+              <mat-form-field>
+                <input matInput type="number" placeholder="Kolejność sekcji" formControlName="order" [(ngModel)]="sectionOrder">
+              </mat-form-field>
+            </td>
+            <td>
+              <button mat-raised-button color="primary" (click)="addSection()">Dodaj</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

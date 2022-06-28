@@ -23,3 +23,35 @@ table {
 .mat-action-row{
   justify-content: left;
 }
+
+.section-editor-block{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.section-editor-info, .section-editor-order{
+  padding: 1rem;
+}
+
+.section-editor-save{
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 500px;
+}
+
+.mat-action-row{
+  justify-content: left;
+  display: block;
+}
+
+form .mat-header-row{
+  text-align: left;
+}
+
+form th.mat-header-row:first-of-type{
+  padding-left: 24px;
+}

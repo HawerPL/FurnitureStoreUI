@@ -13,6 +13,20 @@ tr.product-detail-row {
   height: 0;
 }
 
+.element-categories-list{
+  flex-wrap: wrap;
+}
+
+.element-categories-list span{
+  padding: 0.5rem;
+  border-right: 1px solid black;
+}
+
+.element-categories-list span:last-child{
+  padding: 0.5rem;
+  border-right: 0px;
+}
+
 .mat-column-expandedDetail {
   border-top-width: 0.5px;
   border-top-style: dashed;

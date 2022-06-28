@@ -4,6 +4,8 @@ import { AccountSettingsComponent } from './components/account-settings/account-
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
+import { ProductsPageComponent } from './components/products-page/products-page.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomepageComponent
+  },
+  {
+    path: 'products',
+    component: ProductsPageComponent
+  },
+  {
+    path: 'product/:id',
+    component: ProductPageComponent
   },
   {
     path: 'login',
