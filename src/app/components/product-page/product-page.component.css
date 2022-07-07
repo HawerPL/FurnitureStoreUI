@@ -1,0 +1,42 @@
+section.name {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    border-style: outset;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 4rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+section.img-and-desc {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    border-style: outset;
+    border-radius: 10px;
+}
+
+section.image {
+    margin: 10px;
+}
+
+section.image img {
+    width: 750px;
+    height: 600px;
+    margin-left: -5px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+section.description {
+    margin: 10px;
+    padding: 2rem;
+}
+
+section.description mat-card{
+    margin-top: 50px;
+    width: fit-content;
+    border-color: red;
+    border-style: outset;
+}

@@ -36,6 +36,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatGridListModule,
     ReactiveFormsModule,
     MatExpansionModule,
     MatTableModule,

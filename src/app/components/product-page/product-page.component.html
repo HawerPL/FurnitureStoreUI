@@ -1,4 +1,12 @@
-<div>
-  {{product.name}}
-  {{product.description}}
-</div>
+<section class="name">
+  <p><b>{{product.name}}</b><p>
+</section>
+<section class="img-and-desc">
+  <section class="image">
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  </section>
+  <section class="description">
+    <h1>{{product.description}}</h1>
+    <!-- <mat-card>Cena: </mat-card> -->
+  </section>
+</section>
