@@ -5,6 +5,12 @@ import { User } from 'src/app/models/User';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/httpClient/user.service';
 
+<<<<<<< HEAD
+const ELEMENT_DATA_USER: User[] = [
+  {id: 1, name: 'Dominik', surname: 'Radziszewski', email: 'test123@gmail.com', login: 'ASD', token: '1234'},
+];
+=======
+>>>>>>> 3bfdf6823a82a5c328da293d4d66a011ad7e222e
 
 @Component({
   selector: 'app-account-settings',
@@ -17,7 +23,11 @@ export class AccountSettingsComponent implements OnInit {
   updatedSurname: string = '';
   updatedEmail: string = '';
   updatedToken: string = '';
+<<<<<<< HEAD
+  id: number = 1;
+=======
   id: number = 4;
+>>>>>>> 3bfdf6823a82a5c328da293d4d66a011ad7e222e
 
   user: User;
 
@@ -25,6 +35,10 @@ export class AccountSettingsComponent implements OnInit {
   panelOpenState = false;
 
   displayedColumns: string[] = ['name', 'surname', 'email', 'token'];
+<<<<<<< HEAD
+  dataSourceUser = new MatTableDataSource<User>(ELEMENT_DATA_USER);
+=======
+>>>>>>> 3bfdf6823a82a5c328da293d4d66a011ad7e222e
 
   accountForm = this.fb.group({
     name: [null, Validators.required],
@@ -60,6 +74,8 @@ export class AccountSettingsComponent implements OnInit {
       error: (e) => console.error(e)
     });
 
+<<<<<<< HEAD
+=======
   }
 
   updateSurname(){
@@ -94,6 +110,7 @@ export class AccountSettingsComponent implements OnInit {
       error: (e) => console.error(e)
     });
 
+>>>>>>> 3bfdf6823a82a5c328da293d4d66a011ad7e222e
   }
 
 }

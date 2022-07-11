@@ -4,13 +4,13 @@
                           (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Imiê
+          ImiÄ™
         </mat-panel-title>
         <mat-panel-description>
           {{ user.name }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ imie: </p>
+      <p>ZmieÅ„ imie: </p>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Change name</mat-label>
           <input matInput placeholder="Name" value="" [(ngModel)]="updatedName" formControlName="name">
@@ -29,7 +29,7 @@
           {{ user.surname }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ nazwisko: </p>
+      <p>ZmieÅ„ nazwisko: </p>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Change surname</mat-label>
           <input matInput placeholder="Name" value="" [(ngModel)]="updatedSurname" formControlName="surname">
@@ -48,7 +48,7 @@
           {{ user.email }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ email: </p>
+      <p>ZmieÅ„ email: </p>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Change email</mat-label>
           <input matInput placeholder="Name" value="" [(ngModel)]="updatedEmail" formControlName="email">
@@ -61,13 +61,13 @@
                           (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Has³o
+          HasÅ‚o
         </mat-panel-title>
         <mat-panel-description>
           {{ user.token }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ has³o: </p>
+      <p>ZmieÅ„ hasÅ‚o: </p>
       <div class="example-container">
         <mat-form-field appearance="fill">
           <mat-label>Set new password</mat-label>
@@ -80,4 +80,8 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+<<<<<<< HEAD
 </form>
+=======
+</form>
+>>>>>>> 3bfdf6823a82a5c328da293d4d66a011ad7e222e
