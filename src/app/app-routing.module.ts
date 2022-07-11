@@ -6,6 +6,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -31,15 +32,18 @@ const routes: Routes = [
   },
   {
     path: 'adminPanel',
-    component: AdminPanelComponent
+    component: AdminPanelComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'contentConfiguration',
-    component: AdminPanelComponent
+    component: AdminPanelComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'accountSettings',
-    component: AccountSettingsComponent
+    component: AccountSettingsComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 

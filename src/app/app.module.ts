@@ -36,6 +36,9 @@ import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from './services/interceptor.service';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -76,9 +79,14 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     CKEditorModule,
     FormsModule,
-    MatChipsModule
+    MatChipsModule,
+    NotifierModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
