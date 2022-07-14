@@ -21,8 +21,8 @@ export class ProductsPageComponent implements OnInit {
   categories: Array<Category>;
   selectedCategories: Array<Category> = [];
 
-  async ngOnInit(): Promise<void> {
-    await this.getProducts();
+  ngOnInit(){
+    this.getProducts();
     this.getCategories();
   }
 

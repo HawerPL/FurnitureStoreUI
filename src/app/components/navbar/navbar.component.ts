@@ -13,7 +13,7 @@ export class NavbarComponent implements DoCheck {
   constructor(private router: Router) { }
 
   ngDoCheck(): void {
-    if(sessionStorage.getItem("isLogged")){
+    if(sessionStorage.getItem("token")){
       this.isLogged = true;
     }
     else {
@@ -23,7 +23,8 @@ export class NavbarComponent implements DoCheck {
   }
 
   logout(): void {
-    sessionStorage.removeItem("isLogged");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
     this.router.navigate(['home']);
   }
 

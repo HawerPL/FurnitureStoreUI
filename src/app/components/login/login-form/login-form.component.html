@@ -8,7 +8,7 @@
         <div class="col">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Nazwa użytkownika</mat-label>
-            <input matInput placeholder="Nazwa użytkownika" formControlName="username">
+            <input matInput placeholder="Nazwa użytkownika" formControlName="username" [(ngModel)]="username">
             <mat-error *ngIf="loginForm.controls['username'].hasError">
               Nazwa użytkownika jest wymagana
             </mat-error>
@@ -19,7 +19,7 @@
         <div class="col">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Hasło</mat-label>
-            <input type="password" matInput placeholder="Hasło" formControlName="password">
+            <input type="password" matInput placeholder="Hasło" formControlName="password" [(ngModel)]="password">
             <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
               Hasło jest wymagane
             </mat-error>

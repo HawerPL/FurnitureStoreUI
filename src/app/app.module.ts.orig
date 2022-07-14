@@ -36,10 +36,13 @@ import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { MatChipsModule } from '@angular/material/chips';
+<<<<<<< HEAD
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { NotifierModule } from 'angular-notifier';
+=======
 import { MatGridListModule } from '@angular/material/grid-list';
+>>>>>>> 3bfdf6823a82a5c328da293d4d66a011ad7e222e
 
 @NgModule({
   declarations: [
@@ -88,7 +91,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true,
-  }],  bootstrap: [AppComponent]
+  }],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
