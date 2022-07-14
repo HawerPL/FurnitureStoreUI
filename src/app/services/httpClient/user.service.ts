@@ -19,12 +19,16 @@ export class UserService {
     return this.http.get<Array<User>>(`${environment.api_url}/User`);
   }
 
+  addUser(User: User): Observable<User>{
+    return this.http.post<User>(`${environment.api_url}/User`, User);
+  }
+
   changePassword(id: number, oldPassword: string, password: string){
-    this.http.patch(`${environment.api_url}/User/${id}`, "");
+    return this.http.patch(`${environment.api_url}/User/${id}`, "");
   }
 
   deleteUser(id: number){
-    this.http.delete(`${environment.api_url}/User/${id}`);
+    return this.http.delete(`${environment.api_url}/User/${id}`);
   }
   
   updateUser(User: User, id: number): Observable<User>{
