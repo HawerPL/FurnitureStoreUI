@@ -60,6 +60,10 @@ tr.product-row:not(.expanded-row):active {
   padding: 1rem;
 }
 
+.product-image img {
+  max-height: 15vh;
+}
+
 .product-description-header {
   padding-bottom: 0.6rem;
   color: rgba(0,0,0,.54);
@@ -69,6 +73,10 @@ tr.product-row:not(.expanded-row):active {
   width: 3rem;
   max-width: 5rem;
   text-align: left;
+}
+
+.image-name {
+  padding: 1rem;
 }
 
 .mat-action-row{

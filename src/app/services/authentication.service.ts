@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
-import { map } from 'rxjs';
+import { catchError, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,7 +28,11 @@ export class AuthenticationService {
           sessionStorage.setItem('token', tokenStr);
           return userData;
         }
-      )
+      ),
+      catchError((err) => {
+        sessionStorage.removeItem('token');
+        return err;
+      })
     );
   }
 

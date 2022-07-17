@@ -19,20 +19,15 @@ export class UserService {
     return this.http.get<Array<User>>(`${environment.api_url}/User`);
   }
 
-  changePassword(id: number, oldPassword: string, password: string){
-    this.http.patch(`${environment.api_url}/User/${id}`, "");
+  changePassword(id: number, User: User){
+    this.http.patch(`${environment.api_url}/User/${id}`, User);
   }
 
   deleteUser(id: number){
     this.http.delete(`${environment.api_url}/User/${id}`);
   }
-  
-  updateUser(User: User, id: number): Observable<User>{
-    return this.http.put<User>(`${environment.api_url}/User/${id}`, User);
-  }
 
   updateUser(User: User, id: number): Observable<User>{
     return this.http.put<User>(`${environment.api_url}/User/${id}`, User);
   }
-
 }

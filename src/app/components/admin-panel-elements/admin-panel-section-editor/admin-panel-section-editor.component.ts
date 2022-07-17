@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SectionService } from 'src/app/services/httpClient/section.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-admin-panel-section-editor',
@@ -20,6 +21,7 @@ export class AdminPanelSectionEditorComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'order', 'actions'];
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource = new MatTableDataSource<Section>();
+  notifier: NotifierService;
 
   defaultSection: Section = {id: 0, name: "", description: "", order: -1};
   sections: Array<Section>;
@@ -34,7 +36,9 @@ export class AdminPanelSectionEditorComponent implements OnInit {
 
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  constructor(private http: SectionService, private fb: FormBuilder) { }
+  constructor( private notifierService: NotifierService, private http: SectionService, private fb: FormBuilder) {
+    this.notifier = notifierService;
+   }
 
   sectionForm = this.fb.group({
     name: [null, Validators.required],
@@ -75,8 +79,12 @@ export class AdminPanelSectionEditorComponent implements OnInit {
       next: () => {
         this.getSections();
         this.sectionForm.reset();
+        this.notifier.notify('success', "Pomyślnie dodano sekcję");
       },
-      error: (e) => console.error(e),
+      error: (e) => {
+        console.error(e);
+        this.notifier.notify('error', "Wystąpił błąd: " + e);
+      }
       })
   }
 
@@ -85,8 +93,12 @@ export class AdminPanelSectionEditorComponent implements OnInit {
       {
         next: () => {
           this.getSections();
+          this.notifier.notify('success', "Pomyślnie usunięto sekcję");
         },
-        error: (e) => console.error(e),
+        error: (e) => {
+          console.error(e);
+          this.notifier.notify('error', "Wystąpił błąd: " + e);
+        }
       }
     )
   }
@@ -108,9 +120,12 @@ export class AdminPanelSectionEditorComponent implements OnInit {
       {
         next: () => {
           this.getSections();
+          this.notifier.notify('success', "Pomyślnie zaktualizowano sekcję");
         },
-        error: (e) => console.error(e),
-        complete: () => console.info('complete')
+        error: (e) => {
+          console.error(e);
+          this.notifier.notify('error', "Wystąpił błąd: " + e);
+        }
     });
   }
 

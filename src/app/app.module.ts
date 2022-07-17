@@ -40,6 +40,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { NotifierModule } from 'angular-notifier';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { AdminPanelEditCategoryComponent } from './components/admin-panel-elements/admin-panel-edit-category/admin-panel-edit-category.component';
+import { AdminPanelEditProductComponent } from './components/admin-panel-elements/admin-panel-edit-product/admin-panel-edit-product.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     AdminPanelProductsComponent,
     AdminPanelSectionEditorComponent,
     ProductPageComponent,
-    ProductsPageComponent
+    ProductsPageComponent,
+    AdminPanelEditCategoryComponent,
+    AdminPanelEditProductComponent
     ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     CKEditorModule,
     FormsModule,
     MatChipsModule,
-    NotifierModule
+    NotifierModule,
+    MatDialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

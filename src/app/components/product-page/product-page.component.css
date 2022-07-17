@@ -22,9 +22,8 @@ section.image {
 }
 
 section.image img {
-    width: 750px;
-    height: 600px;
-    margin-left: -5px;
+    max-width: 75vw;
+    max-height: 60vh;
     margin-top: 5px;
     border-radius: 10px;
 }

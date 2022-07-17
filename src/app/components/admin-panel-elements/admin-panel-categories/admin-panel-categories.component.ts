@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { NotifierService } from 'angular-notifier';
 import { Category } from 'src/app/models/Category';
 import { CategoryService } from 'src/app/services/httpClient/category.service';
+import { AdminPanelEditCategoryComponent } from '../admin-panel-edit-category/admin-panel-edit-category.component';
 
 @Component({
   selector: 'app-admin-panel-categories',
@@ -17,12 +20,16 @@ export class AdminPanelCategoriesComponent implements OnInit {
   displayedFormColumns: string[] = ['id-add', 'name-add'];
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource = new MatTableDataSource<Category>();
+  notifier: NotifierService;
 
   categoryName: string = "";
 
+
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  constructor(private fb: FormBuilder, private http: CategoryService) { }
+  constructor(private fb: FormBuilder, private notifierService: NotifierService, private http: CategoryService, public dialog: MatDialog) {
+    this.notifier = notifierService;
+  }
 
   ngOnInit(): void {
     this.getCategories();
@@ -48,9 +55,12 @@ export class AdminPanelCategoriesComponent implements OnInit {
       next: () => {
         this.getCategories();
         this.categoryForm.reset();
+        this.notifier.notify('success', "Pomyślnie dodano kategorię");
       },
-      error: (e) => console.error(e),
-      complete: () => console.info('complete')
+      error: (e) => {
+        console.error(e);
+        this.notifier.notify('error', "Wystąpił błąd: " + e);
+      }
   })
   }
 
@@ -59,14 +69,23 @@ export class AdminPanelCategoriesComponent implements OnInit {
       {
         next: () => {
           this.getCategories();
+          this.notifier.notify('success', "Pomyślnie usunięto kategorię");
         },
-        error: (e) => console.error(e),
+        error: (e) => {
+          console.error(e);
+          this.notifier.notify('error', "Wystąpił błąd: " + e);
+        }
       }
     )
   }
 
-  editCategory(id: number){
-    alert("Akcja nie zaimplemetowana")
+  editCategory(category: Category){
+    const dialogRef = this.dialog.open(AdminPanelEditCategoryComponent, {
+      data: category
+    });
+    dialogRef.afterClosed().subscribe(()=>{
+      this.getCategories();
+    })
   }
 
   reloadData(categories: Array<Category>){

@@ -12,7 +12,7 @@ import { SectionService } from 'src/app/services/httpClient/section.service';
 
 export class MainSectionComponent implements OnInit {
 
-  sections: Section[];
+  sections: Array<Section>;
 
   constructor(private http: SectionService, public sanitizer: DomSanitizer) { }
 
@@ -23,6 +23,14 @@ export class MainSectionComponent implements OnInit {
   getSections(){
     this.http.getSections().subscribe(sections => {
       this.sections = sections;
+      this.sections.sort((a, b) => {
+        if(a.order <= b.order){
+          return -1;
+        }
+        else{
+          return 1;
+        }
+      });
     });
   }
 

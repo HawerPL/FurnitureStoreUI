@@ -1,0 +1,14 @@
+mat-form-field {
+  display: block;
+  padding: 1rem;
+  width: 40vw;
+}
+
+.save-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  margin: 1rem;
+}
