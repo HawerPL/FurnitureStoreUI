@@ -8,6 +8,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/Category';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/httpClient/category.service';
+import { NotifierService } from 'angular-notifier';
+import { AdminPanelEditProductComponent } from '../admin-panel-edit-product/admin-panel-edit-product.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-panel-products',
@@ -28,10 +31,16 @@ export class AdminPanelProductsComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
   expandedElement: Product | null | undefined;
 
+  notifier: NotifierService;
+
   productName: string = "";
+  imageName: string = "";
   productDescription: string = "";
   productHeader: string = "";
   productCategories: Array<Category> = [];
+  fileBase64;
+  srcResult;
+
 
   categoriesList: Array<Category> = [];
 
@@ -43,7 +52,14 @@ export class AdminPanelProductsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private fb: FormBuilder, private httpProduct: ProductService, private httpCategory: CategoryService, private router: Router) { }
+  constructor(private fb: FormBuilder,
+    private notifierService: NotifierService,
+    private httpProduct: ProductService,
+    private httpCategory: CategoryService,
+    private router: Router,
+    public dialog: MatDialog) {
+      this.notifier = notifierService;
+  }
 
   productForm = this.fb.group({
     name: [null, Validators.required],
@@ -53,8 +69,14 @@ export class AdminPanelProductsComponent implements OnInit {
   })
 
   getProducts(){
-    this.httpProduct.getProducts().subscribe(products => {
-      this.reloadData(products);
+    this.httpProduct.getProducts().subscribe({
+      next: products => {
+        this.reloadData(products);
+      },
+      error: (e) => {
+        console.error(e);
+        this.notifier.notify('error', "Nie udało błąd, nie udało się pobrać produktów: " + e);
+      }
     });
   }
 
@@ -63,7 +85,10 @@ export class AdminPanelProductsComponent implements OnInit {
       next: categories => {
         this.categoriesList = categories;
       },
-      error: (e) => console.error(e)
+      error: (e) => {
+        console.error(e);
+        this.notifier.notify('error', "Nie udało błąd, nie udało się pobrać kategorii: " + e);
+      }
     })
   }
 
@@ -73,16 +98,20 @@ export class AdminPanelProductsComponent implements OnInit {
       name: this.productName,
       description: this.productDescription,
       header: this.productHeader,
-      categories: this.productCategories
+      categories: this.productCategories,
+      image: this.fileBase64
     })
     this.httpProduct.addProduct(product).subscribe(
       {
       next: () => {
         this.getProducts();
         this.productForm.reset();
+        this.notifier.notify('success', "Pomyślnie dodano produkt");
       },
-      error: (e) => console.error(e),
-      complete: () => console.info('complete')
+      error: (e) => {
+        console.error(e);
+        this.notifier.notify('error', "Wystąpił błąd: " + e);
+      },
     })
   }
 
@@ -91,14 +120,23 @@ export class AdminPanelProductsComponent implements OnInit {
       {
         next: () => {
           this.getProducts();
+          this.notifier.notify('success', "Pomyślnie usunięto produkt");
         },
-        error: (e) => console.error(e),
+        error: (e) => {
+          console.error(e);
+          this.notifier.notify('error', "Wystąpił błąd: " + e);
+        }
       }
     )
   }
 
-  editProduct(id: number){
-    alert("Akcja nie zaimplemetowana")
+  editProduct(product: Product){
+    const dialogRef = this.dialog.open(AdminPanelEditProductComponent, {
+      data: product
+    });
+    dialogRef.afterClosed().subscribe(()=>{
+      this.getProducts();
+    })
   }
 
   viewProduct(id: number){
@@ -110,7 +148,30 @@ export class AdminPanelProductsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
 
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
 
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+      };
+
+      this.imageName = inputNode.files[0].name;
+      this.getBase64(inputNode.files[0]).then(
+        data => { this.fileBase64 = data }
+      );
+    }
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
 
 }

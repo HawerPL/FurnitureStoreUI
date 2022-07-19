@@ -26,7 +26,7 @@ export class UserService {
   changePassword(id: number, oldPassword: string, password: string){
     return this.http.patch(`${environment.api_url}/User/${id}`, "");
   }
-
+  
   deleteUser(id: number){
     return this.http.delete(`${environment.api_url}/User/${id}`);
   }

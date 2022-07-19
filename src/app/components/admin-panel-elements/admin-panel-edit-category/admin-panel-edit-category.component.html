@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  <h3>
+    Edycja kategorii: {{category.id}}
+  </h3>
+  <form [formGroup]="categoryForm" class="category-form">
+    <mat-form-field>
+      <mat-label> Nazwa kategorii </mat-label>
+      <input matInput placeholder="Nazwa kategorii" formControlName="name" [(ngModel)]="categoryName">
+    </mat-form-field>
+    <div class="save-container">
+      <button mat-raised-button color="primary" (click)="editCategory()">Zapisz</button>
+    </div>
+  </form>
+</div>

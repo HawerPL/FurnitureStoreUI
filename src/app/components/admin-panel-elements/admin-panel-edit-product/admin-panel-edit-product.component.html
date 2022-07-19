@@ -1,0 +1,40 @@
+<div mat-dialog-content>
+  <h3>
+    Edycja produktu: {{product.id}}
+  </h3>
+  <form [formGroup]="productForm" class="product-form">
+    <h4>Nazwa produktu</h4>
+    <mat-form-field>
+      <input matInput placeholder="Nazwa produktu" formControlName="name" [(ngModel)]="productName">
+    </mat-form-field>
+
+    <h4>Nagłówek produktu</h4>
+    <mat-form-field>
+      <input matInput placeholder="Nagłówek produktu" formControlName="header" [(ngModel)]="productHeader">
+    </mat-form-field>
+
+    <h4>Kategorie</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Kategorie</mat-label>
+      <mat-select formControlName="categories" multiple [(ngModel)]="productCategories">
+        <mat-option *ngFor="let category of categoriesList" [value]="category">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h4>Opis produktu</h4>
+    <mat-form-field>
+      <textarea matInput placeholder="Opis produktu" formControlName="description" [(ngModel)]="productDescription"></textarea>
+    </mat-form-field>
+
+    <h4>Zdjęcie</h4>
+    <div class="edit-image-button">
+      <button type="button" mat-raised-button (click)="fileInput.click()">Wybierz plik</button>
+      <input hidden (change)="onFileSelected()" #fileInput type="file" color="primary" id="file">
+      <span class="image-name">{{imageName}}</span>
+    </div>
+
+    <div class="save-container">
+      <button mat-raised-button color="primary" (click)="editProduct()">Zapisz</button>
+    </div>
+  </form>
+</div>

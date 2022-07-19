@@ -6,4 +6,5 @@ export interface Product {
   description: string;
   header: string;
   categories: Array<Category>;
+  image: any;
 }

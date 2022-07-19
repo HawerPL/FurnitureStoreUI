@@ -10,17 +10,31 @@
   margin-left: 2vw;
   margin-right: 2vw;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .product-card {
   max-width: 400px;
+  margin: 1em;
 }
 
-.product-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.product-categories-list {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border-right: 1px solid rgba(0,0,0,.54);
+}
+
+.product-categories-list:last-child{
+  padding: 0.3rem;
+  border-right: 0px;
+}
+
+mat-card-header, mat-card-content, mat-card-actions {
+  padding: 1rem;
 }
 
 img {
-  height: 50%;
+  width: 100%;
+  margin: 0;
+  height: auto;
 }

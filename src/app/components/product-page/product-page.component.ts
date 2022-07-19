@@ -13,7 +13,7 @@ export class ProductPageComponent implements OnInit {
 
   constructor(private http: ProductService, private route: ActivatedRoute) { }
 
-  product: Product = {name: "" , header: "", description: "", categories: Array<Category>()};
+  product: Product = { name: "" , header: "", description: "", categories: Array<Category>(), image: "" };
 
   ngOnInit(): void {
     this.getProduct(this.route.snapshot.params['id']);
