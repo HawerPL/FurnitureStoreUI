@@ -1,116 +1,120 @@
-<mat-accordion multi>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Użytkownicy
-        </mat-panel-title>
-        <mat-panel-description>
-          Dodaj, edytuj lub usuń użytkownika
-        </mat-panel-description>
-        <mat-icon>group</mat-icon>
-      </mat-expansion-panel-header>
-  
-      <table mat-table
-         [dataSource]="dataSource" multiTemplateDataRows>
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="login">
-            <th mat-header-cell *matHeaderCellDef> Login </th>
-            <td mat-cell *matCellDef="let element"> {{element.login}} </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Imie </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        <ng-container matColumnDef="surname">
-          <th mat-header-cell *matHeaderCellDef> Nazwisko </th>
-          <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
-        </ng-container>
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
-        <ng-container matColumnDef="token">
-            <th mat-header-cell *matHeaderCellDef> Hasło </th>
-            <td mat-cell *matCellDef="let element"> {{element.token}} </td>
-        </ng-container>
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Akcje </th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon class="clickable-icon" (click)="deleteUser(element.id)">delete</mat-icon>
-            <mat-icon class="clickable-icon" (click)="editUser(element.id)">edit</mat-icon>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="expandedDetail">
-          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-            <div class="product-detail"
-                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            </div>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-            class="product-row"
-            [class.expanded-row]="expandedElement === element"
-            (click)="expandedElement = expandedElement === element ? null : element">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="product-detail-row"></tr>
-      </table>
-  
-      <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" aria-label="Select page of product elements">
-      </mat-paginator>
-  
-      <mat-action-row>
-        <form [formGroup]="userForm" class="product-form">
-          <table class="mat-table">
-            <tr>
-              <th class="mat-header-row" > Login </th>
-              <th class="mat-header-row" > Imie </th>
-              <th class="mat-header-row" > Nazwisko </th>
-              <th class="mat-header-row" > Email </th>
-              <th class="mat-header-row" > Hasło </th>
-            </tr>
-            <tr >
-              <td class="mat-cell" >
-                <mat-form-field>
-                  <input matInput placeholder="Login użytkownika" formControlName="login" [(ngModel)]="userLogin">
-                </mat-form-field>
-              </td>
-              <td class="mat-cell" >
-                <mat-form-field>
-                  <input matInput placeholder="Imie użytkownika" formControlName="name" [(ngModel)]="userName">
-                </mat-form-field>
-              </td>
-              <td class="mat-cell" >
-                <mat-form-field>
-                  <textarea matInput placeholder="Nazwisko użytkownika" formControlName="surname" [(ngModel)]="userSurname"></textarea>
-                </mat-form-field>
-              </td>
-              <td class="mat-cell" >
-                <mat-form-field>
-                  <textarea matInput placeholder="Email użytkownika" formControlName="email" [(ngModel)]="userEmail"></textarea>
-                </mat-form-field>
-              </td>
-              <td class="mat-cell" >
-                <mat-form-field>
-                    <input matInput [type]="hide ? 'password' : 'text'" value="" [(ngModel)]="userToken" formControlName="token">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-              </td>
-              
-              <td>
-                <button mat-raised-button color="primary" (click)="addUser()">Dodaj</button>
-              </td>
-            </tr>
-          </table>
-        </form>
-      </mat-action-row>
-  
-    </mat-expansion-panel>
-  </mat-accordion>
+<div class="admin-settings-background">
+  <div class="admin-settings-component">
+    <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Użytkownicy
+          </mat-panel-title>
+          <mat-panel-description>
+            Dodaj, edytuj lub usuń użytkownika
+          </mat-panel-description>
+          <mat-icon>group</mat-icon>
+        </mat-expansion-panel-header>
+    
+        <table mat-table
+          [dataSource]="dataSource" multiTemplateDataRows>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="login">
+              <th mat-header-cell *matHeaderCellDef> Login </th>
+              <td mat-cell *matCellDef="let element"> {{element.login}} </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Imie </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef> Nazwisko </th>
+            <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+          <ng-container matColumnDef="token">
+              <th mat-header-cell *matHeaderCellDef> Hasło </th>
+              <td mat-cell *matCellDef="let element"> {{element.password </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Akcje </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-icon class="clickable-icon" (click)="deleteUser(element.id)">delete</mat-icon>
+              <mat-icon class="clickable-icon" (click)="editUser(element.id)">edit</mat-icon>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+              <div class="product-detail"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              </div>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+              class="product-row"
+              [class.expanded-row]="expandedElement === element"
+              (click)="expandedElement = expandedElement === element ? null : element">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="product-detail-row"></tr>
+        </table>
+    
+        <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" aria-label="Select page of product elements">
+        </mat-paginator>
+    
+        <mat-action-row>
+          <form [formGroup]="userForm" class="product-form">
+            <table class="mat-table">
+              <tr>
+                <th class="mat-header-row" > Login </th>
+                <th class="mat-header-row" > Imie </th>
+                <th class="mat-header-row" > Nazwisko </th>
+                <th class="mat-header-row" > Email </th>
+                <th class="mat-header-row" > Hasło </th>
+              </tr>
+              <tr >
+                <td class="mat-cell" >
+                  <mat-form-field>
+                    <input matInput placeholder="Login użytkownika" formControlName="login" [(ngModel)]="userLogin">
+                  </mat-form-field>
+                </td>
+                <td class="mat-cell" >
+                  <mat-form-field>
+                    <input matInput placeholder="Imie użytkownika" formControlName="name" [(ngModel)]="userName">
+                  </mat-form-field>
+                </td>
+                <td class="mat-cell" >
+                  <mat-form-field>
+                    <input matInput placeholder="Nazwisko użytkownika" formControlName="surname" [(ngModel)]="userSurname">
+                  </mat-form-field>
+                </td>
+                <td class="mat-cell" >
+                  <mat-form-field>
+                    <input matInput placeholder="Email użytkownika" formControlName="email" [(ngModel)]="userEmail">
+                  </mat-form-field>
+                </td>
+                <td class="mat-cell" >
+                  <mat-form-field>
+                      <input matInput [type]="hide ? 'password' : 'text'" value="" [(ngModel)]="userPassword" formControlName="token">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                  </mat-form-field>
+                </td>
+                
+                <td>
+                  <button mat-raised-button color="primary" (click)="addUser()">Dodaj</button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </mat-action-row>
+    
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
   

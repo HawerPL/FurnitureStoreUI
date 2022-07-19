@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'adminPanel',
-    component: AdminPanelComponent,
+    component: AdminSettingsComponent,
     canActivate: [AuthGuardService]
   },
   {

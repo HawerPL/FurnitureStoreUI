@@ -32,7 +32,7 @@ export class AdminSettingsComponent implements OnInit {
   userName: string = "";
   userSurname: string = "";
   userEmail: string = "";
-  userToken: string = "";
+  userPassword: string = "";
 
   @ViewChild('paginator') paginator!: MatPaginator;
 
@@ -48,7 +48,7 @@ export class AdminSettingsComponent implements OnInit {
     name: [null, Validators.required],
     surname: [null, Validators.required],
     email: [null, Validators.required],
-    token: [null, Validators.required],
+    password: [null, Validators.required],
   })
 
   getUsers(){
@@ -64,7 +64,7 @@ export class AdminSettingsComponent implements OnInit {
       name: this.userName,
       surname: this.userSurname,
       email: this.userEmail,
-      token: this.userToken
+      password: this.userPassword
     })
     this.httpUser.addUser(user).subscribe(
       {

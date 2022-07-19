@@ -17,7 +17,7 @@ export class AccountSettingsComponent implements OnInit {
   updatedSurname: string = '';
   updatedEmail: string = '';
   updatedToken: string = '';
-  id: number = 4;
+  id: number = 10;
 
   user: User;
 

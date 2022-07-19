@@ -1,0 +1,12 @@
+.account-settings-background{
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+  }
+  
+  .account-settings-component{
+    width: 90vw;
+    padding: 3vh;
+  }
