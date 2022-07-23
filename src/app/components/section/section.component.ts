@@ -15,6 +15,7 @@ export class SectionComponent implements OnInit {
   description: SafeHtml = "";
   name: SafeHtml = "";
 
+
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {

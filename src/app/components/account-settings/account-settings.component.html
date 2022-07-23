@@ -4,15 +4,15 @@
                           (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Imiê
+          ImiÄ™
         </mat-panel-title>
         <mat-panel-description>
           {{ user.name }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ imie: </p>
+      <p>ZmieÅ„ imie: </p>
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Change name</mat-label>
+          <mat-label>ImiÄ™</mat-label>
           <input matInput placeholder="Name" value="" [(ngModel)]="updatedName" formControlName="name">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="updateName()">Edytuj</button>
@@ -29,9 +29,9 @@
           {{ user.surname }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ nazwisko: </p>
+      <p>ZmieÅ„ nazwisko: </p>
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Change surname</mat-label>
+          <mat-label>Nazwisko</mat-label>
           <input matInput placeholder="Name" value="" [(ngModel)]="updatedSurname" formControlName="surname">
         </mat-form-field>
         <button mat-raised-button color="primary">Edytuj</button>
@@ -48,9 +48,9 @@
           {{ user.email }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ email: </p>
+      <p>ZmieÅ„ email: </p>
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Change email</mat-label>
+          <mat-label>Email</mat-label>
           <input matInput placeholder="Name" value="" [(ngModel)]="updatedEmail" formControlName="email">
         </mat-form-field>
         <button mat-raised-button color="primary">Edytuj</button>
@@ -61,17 +61,17 @@
                           (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Has³o
+          HasÅ‚o
         </mat-panel-title>
         <mat-panel-description>
           {{ user.token }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>Zmieñ has³o: </p>
+      <p>ZmieÅ„ hasÅ‚o: </p>
       <div class="example-container">
         <mat-form-field appearance="fill">
-          <mat-label>Set new password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" value="" [(ngModel)]="updatedToken" formControlName="token">
+          <mat-label>HasÅ‚o</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" value="" [(ngModel)]="updatedToken" formControlName="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
