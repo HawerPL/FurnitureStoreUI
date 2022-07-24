@@ -17,7 +17,7 @@ export class AccountSettingsComponent implements OnInit {
   updatedSurname: string = '';
   updatedEmail: string = '';
   updatedToken: string = '';
-  id: number = 10;
+  id: number;
 
   user: User;
 
@@ -30,7 +30,7 @@ export class AccountSettingsComponent implements OnInit {
     name: [null, Validators.required],
     surname: [null, Validators.required],
     email: [null, Validators.required],
-    token: [null, Validators.required],
+    password: [null, Validators.required],
   });
 
   hasUnitNumber = false;
@@ -38,11 +38,23 @@ export class AccountSettingsComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private http: UserService) { }
 
   ngOnInit(): void {
-    this.http.getUser(this.id).subscribe({
-      next: user => {
-        this.user = user;
+    this.http.getUsers().subscribe({
+      next: data => {
+        let sessionUsername = sessionStorage.getItem('username');
+        data.forEach(user => {
+          if(user.login === sessionUsername){
+            this.id = user.id;
+          }
+        });
+        this.http.getUser(this.id).subscribe({
+          next: user => {
+            this.user = user;
+          }
+        })
       }
     })
+
+
   }
 
   updateName(){

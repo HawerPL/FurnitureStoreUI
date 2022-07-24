@@ -26,13 +26,17 @@ export class UserService {
   changePassword(id: number, oldPassword: string, password: string){
     return this.http.patch(`${environment.api_url}/User/${id}`, "");
   }
-  
+
   deleteUser(id: number){
     return this.http.delete(`${environment.api_url}/User/${id}`);
   }
-  
+
   updateUser(User: User, id: number): Observable<User>{
     return this.http.put<User>(`${environment.api_url}/User/${id}`, User);
+  }
+
+  getUserByUsername(username: String): Observable<User>{
+    return this.http.get<User>(`${environment.api_url}/User/${username}`);
   }
 
 }
