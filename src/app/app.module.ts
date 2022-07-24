@@ -43,6 +43,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { AdminPanelEditCategoryComponent } from './components/admin-panel-elements/admin-panel-edit-category/admin-panel-edit-category.component';
 import { AdminPanelEditProductComponent } from './components/admin-panel-elements/admin-panel-edit-product/admin-panel-edit-product.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AdminEditSettingsComponent } from './components/admin-edit-settings/admin-edit-settings.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProductPageComponent,
     ProductsPageComponent,
     AdminPanelEditCategoryComponent,
-    AdminPanelEditProductComponent
+    AdminPanelEditProductComponent,
+    AdminEditSettingsComponent,
     ],
   imports: [
     BrowserModule,

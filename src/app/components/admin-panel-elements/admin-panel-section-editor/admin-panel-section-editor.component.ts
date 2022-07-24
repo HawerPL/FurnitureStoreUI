@@ -42,7 +42,7 @@ export class AdminPanelSectionEditorComponent implements OnInit {
 
   sectionForm = this.fb.group({
     name: [null, Validators.required],
-    order: [null, Validators.required]
+    order: [null, Validators.required, Validators.maxLength(5)]
   })
 
   sectionEditForm = this.fb.group({

@@ -1,0 +1,31 @@
+<div mat-dialog-content>
+    <h3>
+      Edycja użytkownika: {{user.id}}
+    </h3>
+    <form [formGroup]="userForm" class="user-form">
+      <h4>Login użytkownika</h4>
+      <mat-form-field>
+        <input matInput placeholder="Login użytkownika" formControlName="login" [(ngModel)]="userLogin">
+      </mat-form-field>
+  
+      <h4>Imie użytkownika</h4>
+      <mat-form-field>
+        <input matInput placeholder="Imie użytkownika" formControlName="name" [(ngModel)]="userName">
+      </mat-form-field>
+
+      <h4>Nazwisko użytkownika</h4>
+      <mat-form-field>
+        <input matInput placeholder="Nazwisko użytkownika" formControlName="surname" [(ngModel)]="userSurname">
+      </mat-form-field>
+
+      <h4>Email użytkownika</h4>
+      <mat-form-field>
+        <input matInput placeholder="Email użytkownika" formControlName="email" [(ngModel)]="userEmail">
+      </mat-form-field>
+  
+      <div class="save-container">
+        <button mat-raised-button color="primary" (click)="editUser()">Zapisz</button>
+      </div>
+    </form>
+  </div>
+  

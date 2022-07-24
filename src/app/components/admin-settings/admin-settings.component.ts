@@ -1,11 +1,14 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/httpClient/user.service';
+import { AdminEditSettingsComponent } from '../admin-edit-settings/admin-edit-settings.component';
 
 @Component({
   selector: 'app-admin-settings',
@@ -27,6 +30,7 @@ export class AdminSettingsComponent implements OnInit {
   expandedElement: User | null | undefined;
 
   hide = true;
+  notifier: NotifierService;
   
   userLogin: string = "";
   userName: string = "";
@@ -41,7 +45,13 @@ export class AdminSettingsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private fb: FormBuilder, private httpUser: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, 
+    private notifierService: NotifierService,
+    private httpUser: UserService, 
+    private router: Router,
+    public dialog: MatDialog) { 
+      this.notifier = notifierService;
+    }
 
   userForm = this.fb.group({
     login: [null, Validators.required],
@@ -88,8 +98,13 @@ export class AdminSettingsComponent implements OnInit {
     )
   }
 
-  editUser(id: number){
-    alert("Akcja nie zaimplemetowana")
+  editUser(user: User){
+    const dialogRef = this.dialog.open(AdminEditSettingsComponent, {
+      data: user
+    });
+    dialogRef.afterClosed().subscribe(()=>{
+      this.getUsers();
+    })
   }
 
   reloadData(users: Array<User>){
